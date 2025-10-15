@@ -7,69 +7,12 @@ import {
 import { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Search } from "@mui/icons-material";
-import axios from "axios";
 import faker from "@faker-js/faker";
 import { useEffect } from "react";
 import { TopMenu } from "./components/TopMenu";
 import { EditMenu } from "./components/EditMenu";
-
-const api = {
-  async addPost(post) {
-    const response = await axios.post("/api/create-post", post);
-
-    return response.data;
-  },
-  async removePost(id) {
-    const response = await axios.delete(`/api/remove-post?id=${id}`);
-
-    return response.data;
-  },
-  async search(query) {
-    const response = await axios.get(`/api/search?query=${query}`);
-
-    return response.data;
-  },
-  async getAllPosts() {
-    const response = await axios.get("/api/posts");
-
-    return response.data;
-  },
-};
-
-//set datagrid  column view
-const columns = [
-  {
-    field: "title",
-    headerName: "Name",
-    flex: 4,
-    minWidth: 100,
-  },
-  {
-    field: "type",
-    headerName: "Type",
-    flex: 2,
-    minWidth: 80,
-  },
-  {
-    field: "author",
-    headerName: "Author",
-    flex: 1,
-    minWidth: 10,
-  },
-  {
-    field: "content",
-    headerName: "ArticleBody",
-    flex: 1,
-    minWidth: 250,
-  },
-  {
-    field: "date",
-    headerName: "Publish Date",
-    flex: 1,
-    minWidth: 80,
-  },
-];
-
+import { columns } from "./constants/columns";
+import { api } from "./services/api"
 
 const App = () => {
   
