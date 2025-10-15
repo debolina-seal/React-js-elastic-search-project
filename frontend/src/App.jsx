@@ -1,19 +1,17 @@
 import {
-  AppBar,
-  Box,
   Container,
-  Button,
   IconButton,
   InputAdornment,
   TextField,
-  Toolbar,
 } from "@mui/material";
 import { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Add, Search, Delete } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
 import axios from "axios";
 import faker from "@faker-js/faker";
 import { useEffect } from "react";
+import { TopMenu } from "./components/TopMenu";
+import { EditMenu } from "./components/EditMenu";
 
 const api = {
   async addPost(post) {
@@ -71,43 +69,6 @@ const columns = [
     minWidth: 80,
   },
 ];
-
-const TopMenu = (props) => {
-  return (
-    <Box sx={{ flexGrow: 100, mb: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <div style={{ flex: 100 }}></div>
-          <span>React-Node-Elastic-Search</span>
-        </Toolbar>
-      </AppBar>
-    </Box>
-  );
-};
-
-const EditMenu = (props) => {
-  return (
-    <div>
-      <Button
-        startIcon={<Add />}
-        variant="contained"
-        sx={{ my: 1, mr: 1 }}
-        onClick={props.addPost}
-      >
-        Add
-      </Button>
-      <Button
-        startIcon={<Delete />}
-        variant="contained"
-        disabled={!props.selection.length}
-        sx={{ my: 1, mr: 1 }}
-        onClick={() => props.removePosts(props.selection)}
-      >
-        Remove
-      </Button>
-    </div>
-  );
-};
 
 
 const App = () => {
